@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- <form action="{% url 'update' todo.id %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="title" placeholder="Enter updated todo">
+      <input type="submit" value="Update">
+    </form> -->
+
+    <div class = "row mt-4">
+      <div class="col">
+        <form action="{% url 'update' todo.id %}" method="POST">
+          {% csrf_token %}
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <input type="text" class="form-control mb-2" id="inlineFormInput" name='title' placeholder="Enter updated todo...">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-success mb-2">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}

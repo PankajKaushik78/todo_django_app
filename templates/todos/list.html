@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class = "row mt-4">
+    <div class="col">
+      <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <input type="text" class="form-control mb-2" name='title' id="inlineFormInput" placeholder="Type here...">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-2">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      {% if list_todo %}
+        <ul class="list-group ">
+          {% for todo in list_todo %}
+            <li class="list-group-item">{{todo.title}}
+              <div class="float-right">
+                <a href="{% url 'update' todo.id %}"><button type="button" class="text-right btn btn-info">Update</button></a>
+                <a href="{% url 'delete' todo.id %}"><button type="button" class="text-right btn btn-danger">Delete</button></a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>You have nothing to do! Want to add something?</p>
+      {% endif %}
+    </div>
+  </div>
+
+
+{% endblock %}
